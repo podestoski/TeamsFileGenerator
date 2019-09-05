@@ -192,7 +192,7 @@
             // 
             this.btnSaveChanges.Location = new System.Drawing.Point(662, 326);
             this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(75, 82);
+            this.btnSaveChanges.Size = new System.Drawing.Size(75, 80);
             this.btnSaveChanges.TabIndex = 14;
             this.btnSaveChanges.Text = "Write File";
             this.btnSaveChanges.UseVisualStyleBackColor = true;

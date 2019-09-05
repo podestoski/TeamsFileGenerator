@@ -19,6 +19,8 @@ namespace TeamsFileGenerator
         private const string CLUBS_FILE = @"C:\Users\Spodesta\Documents\Projects\Android\FifaTournament\app\src\main\res\raw\teamsdata.xml";
         private const string NATIONAL_TEAMS_FILE = @"C:\Users\Spodesta\Documents\Projects\Android\FifaTournament\app\src\main\res\raw\nationalteamsdata.xml";
 
+        private const string DRAWABLES_PATH = @"C:\Users\Spodesta\Documents\Projects\Android\FifaTournament\app\src\main\res\drawable\";
+
         private const string CLUBS_FILE_COPY = @"clubs_copy.xml";
         private const string NATIONAL_TEAMS_FILE_COPY = @"national_teams_copy.xml";
 
@@ -162,9 +164,44 @@ namespace TeamsFileGenerator
             serializer.Serialize(writer, nationalTeamsCollection);
             writer.Close();
 
+            File.Copy(CLUBS_FILE_COPY, CLUBS_FILE, true);
+            File.Copy(NATIONAL_TEAMS_FILE_COPY, NATIONAL_TEAMS_FILE, true);
+
             loadTeamsFromFileToCollection();
             refreshListOnScreen();
             MessageBox.Show("File Written");
+
+            string message = "Clubs Drawables missing:\n";
+            bool missing = false;
+            foreach (League league in clubsCollection.leagues)
+            {
+                foreach (Team team in league.teams)
+                {
+                    if (!File.Exists(DRAWABLES_PATH + team.teamresource))
+                    {
+                        message += "\n " + team.teamname;
+                        missing = true;
+                    }
+                }
+            }
+            if (missing)
+                MessageBox.Show(message, "Drawables missing");
+
+            message = "National Teams Drawables missing:\n";
+            missing = false;
+            foreach (League league in nationalTeamsCollection.leagues)
+            {
+                foreach (Team team in league.teams)
+                {
+                    if (!File.Exists(DRAWABLES_PATH + team.teamresource))
+                    {
+                        message += "\n " + team.teamname;
+                        missing = true;
+                    }
+                }
+            }
+            if (missing)
+                MessageBox.Show(message, "Drawables missing");
 
         }
 
@@ -271,6 +308,9 @@ namespace TeamsFileGenerator
 
         private void loadTeamsFromFileToCollection()
         {
+            File.Copy(CLUBS_FILE, CLUBS_FILE_COPY, true);
+            File.Copy(NATIONAL_TEAMS_FILE, NATIONAL_TEAMS_FILE_COPY, true);
+
             XmlSerializer serializer = new XmlSerializer(typeof(LeagueCollection));
 
             // Clubs
