@@ -7,8 +7,8 @@ namespace TeamsFileGenerator
     [Serializable()]
     public class League
     {
-        [XmlElement("idLeague")]
-        public int idLeague { get; set; }
+        [XmlElement("idleague")]
+        public int idleague { get; set; }
 
         [XmlElement("leaguename")]
         public string leaguename { get; set; }

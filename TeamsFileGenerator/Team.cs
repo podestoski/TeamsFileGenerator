@@ -5,8 +5,8 @@ namespace TeamsFileGenerator
 {
     public class Team
     {
-        [XmlElement("idTeam")]
-        public int idTeam;
+        [XmlElement("idteam")]
+        public int idteam;
 
         [XmlElement("teamname")]
         public string teamname;

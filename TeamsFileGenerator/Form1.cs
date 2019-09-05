@@ -272,14 +272,14 @@ namespace TeamsFileGenerator
             int j = 1;
             foreach (League league in clubsCollection.leagues)
             {
-                league.idLeague = i;
+                league.idleague = i;
                 i++;
                 if (league.teams.Count > 0)
                 {
                     league.teams = league.teams.OrderBy(team => team.teamname).ToList();
                     foreach (Team team in league.teams)
                     {
-                        team.idTeam = j;
+                        team.idteam = j;
                         j++;
                         team.teamresource = "club_" + team.teamname.ToLower().Replace(" ", "_") + ".png";
                     }
@@ -291,14 +291,14 @@ namespace TeamsFileGenerator
             j = 1;
             foreach (League league in nationalTeamsCollection.leagues)
             {
-                league.idLeague = i;
+                league.idleague = i;
                 i++;
                 league.teams = league.teams.OrderBy(team => team.teamname).ToList();
                 if (league.teams.Count > 0)
                 { 
                     foreach (Team team in league.teams)
                     {
-                        team.idTeam = j;
+                        team.idteam = j;
                         j++;
                         team.teamresource = "nt_" + team.teamname.ToLower().Replace(" ", "_") + ".png";
                     }
