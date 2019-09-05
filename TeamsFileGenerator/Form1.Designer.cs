@@ -47,6 +47,7 @@
             this.txtAddTeam = new System.Windows.Forms.TextBox();
             this.txtEditLeague = new System.Windows.Forms.TextBox();
             this.txtEditTeam = new System.Windows.Forms.TextBox();
+            this.chkTranslate = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -233,11 +234,22 @@
             this.txtEditTeam.TabIndex = 18;
             this.txtEditTeam.TextChanged += new System.EventHandler(this.txtEditTeam_TextChanged);
             // 
+            // chkTranslate
+            // 
+            this.chkTranslate.AutoSize = true;
+            this.chkTranslate.Location = new System.Drawing.Point(581, 412);
+            this.chkTranslate.Name = "chkTranslate";
+            this.chkTranslate.Size = new System.Drawing.Size(207, 17);
+            this.chkTranslate.TabIndex = 19;
+            this.chkTranslate.Text = "Generate Spanish National Teams File";
+            this.chkTranslate.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chkTranslate);
             this.Controls.Add(this.txtEditTeam);
             this.Controls.Add(this.txtEditLeague);
             this.Controls.Add(this.txtAddTeam);
@@ -287,6 +299,7 @@
         private System.Windows.Forms.TextBox txtAddTeam;
         private System.Windows.Forms.TextBox txtEditLeague;
         private System.Windows.Forms.TextBox txtEditTeam;
+        private System.Windows.Forms.CheckBox chkTranslate;
     }
 }
 

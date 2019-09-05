@@ -10,14 +10,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using DarrenLee;
 
 namespace TeamsFileGenerator
 {
     public partial class Form1 : Form
     {
 
+
         private const string CLUBS_FILE = @"C:\Users\Spodesta\Documents\Projects\Android\FifaTournament\app\src\main\res\raw\teamsdata.xml";
         private const string NATIONAL_TEAMS_FILE = @"C:\Users\Spodesta\Documents\Projects\Android\FifaTournament\app\src\main\res\raw\nationalteamsdata.xml";
+        private const string NATIONAL_TEAMS_FILE_SPANISH = @"C:\Users\Spodesta\Documents\Projects\Android\FifaTournament\app\src\main\res\raw\nationalteamsdata_spanish.xml";
 
         private const string DRAWABLES_PATH = @"C:\Users\Spodesta\Documents\Projects\Android\FifaTournament\app\src\main\res\drawable\";
 
@@ -203,6 +206,9 @@ namespace TeamsFileGenerator
             if (missing)
                 MessageBox.Show(message, "Drawables missing");
 
+            if(chkTranslate.Checked)
+                saveFileSpanish();
+
         }
 
         private void btnAddLeague_Click(object sender, EventArgs e)
@@ -304,6 +310,7 @@ namespace TeamsFileGenerator
                     }
                 }
             }
+
         }
 
         private void loadTeamsFromFileToCollection()
@@ -324,6 +331,47 @@ namespace TeamsFileGenerator
             reader = new StreamReader(path);
             nationalTeamsCollection = (LeagueCollection)serializer.Deserialize(reader);
             reader.Close();
+
+        }
+
+        private void saveFileSpanish()
+        {
+
+            foreach (League league in nationalTeamsCollection.leagues)
+            {
+                if (league.teams.Count > 0)
+                {
+                    foreach (Team team in league.teams)
+                    {
+                        team.teamname = DarrenLee.Translator.Translator.Translate(team.teamname, "en", "es"); 
+                    }
+                }
+            }
+
+            nationalTeamsCollection.leagues = nationalTeamsCollection.leagues.OrderBy(league => league.leaguename).ToList();
+            int i = 1;
+            int j = 1;
+            foreach (League league in nationalTeamsCollection.leagues)
+            {
+                league.idleague = i;
+                i++;
+                league.teams = league.teams.OrderBy(team => team.teamname).ToList();
+                if (league.teams.Count > 0)
+                {
+                    foreach (Team team in league.teams)
+                    {
+                        team.idteam = j;
+                        j++;
+                    }
+                }
+            }
+
+            XmlSerializer serializer = new XmlSerializer(typeof(LeagueCollection));
+
+            StreamWriter writer = new StreamWriter(NATIONAL_TEAMS_FILE_SPANISH);
+            serializer.Serialize(writer, nationalTeamsCollection);
+            writer.Close();
+
 
         }
 
