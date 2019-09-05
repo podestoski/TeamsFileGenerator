@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.rbClubs = new System.Windows.Forms.RadioButton();
             this.rbNationalTeams = new System.Windows.Forms.RadioButton();
             this.listViewLeagues = new System.Windows.Forms.ListView();
@@ -42,6 +43,10 @@
             this.btnEditLeague = new System.Windows.Forms.Button();
             this.btnEditTeam = new System.Windows.Forms.Button();
             this.btnSaveChanges = new System.Windows.Forms.Button();
+            this.txtAddLeague = new System.Windows.Forms.TextBox();
+            this.txtAddTeam = new System.Windows.Forms.TextBox();
+            this.txtEditLeague = new System.Windows.Forms.TextBox();
+            this.txtEditTeam = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,7 +124,8 @@
             // 
             // btnDeleteLeague
             // 
-            this.btnDeleteLeague.Location = new System.Drawing.Point(34, 326);
+            this.btnDeleteLeague.Enabled = false;
+            this.btnDeleteLeague.Location = new System.Drawing.Point(169, 385);
             this.btnDeleteLeague.Name = "btnDeleteLeague";
             this.btnDeleteLeague.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteLeague.TabIndex = 7;
@@ -129,7 +135,8 @@
             // 
             // btnDeleteTeam
             // 
-            this.btnDeleteTeam.Location = new System.Drawing.Point(312, 326);
+            this.btnDeleteTeam.Enabled = false;
+            this.btnDeleteTeam.Location = new System.Drawing.Point(581, 383);
             this.btnDeleteTeam.Name = "btnDeleteTeam";
             this.btnDeleteTeam.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteTeam.TabIndex = 8;
@@ -139,39 +146,47 @@
             // 
             // btnAddLeague
             // 
-            this.btnAddLeague.Location = new System.Drawing.Point(34, 355);
+            this.btnAddLeague.Enabled = false;
+            this.btnAddLeague.Location = new System.Drawing.Point(169, 328);
             this.btnAddLeague.Name = "btnAddLeague";
             this.btnAddLeague.Size = new System.Drawing.Size(75, 23);
             this.btnAddLeague.TabIndex = 10;
             this.btnAddLeague.Text = "Add";
             this.btnAddLeague.UseVisualStyleBackColor = true;
+            this.btnAddLeague.Click += new System.EventHandler(this.btnAddLeague_Click);
             // 
             // btnAddTeam
             // 
-            this.btnAddTeam.Location = new System.Drawing.Point(312, 355);
+            this.btnAddTeam.Enabled = false;
+            this.btnAddTeam.Location = new System.Drawing.Point(581, 328);
             this.btnAddTeam.Name = "btnAddTeam";
             this.btnAddTeam.Size = new System.Drawing.Size(75, 23);
             this.btnAddTeam.TabIndex = 11;
             this.btnAddTeam.Text = "Add";
             this.btnAddTeam.UseVisualStyleBackColor = true;
+            this.btnAddTeam.Click += new System.EventHandler(this.btnAddTeam_Click);
             // 
             // btnEditLeague
             // 
-            this.btnEditLeague.Location = new System.Drawing.Point(34, 385);
+            this.btnEditLeague.Enabled = false;
+            this.btnEditLeague.Location = new System.Drawing.Point(169, 358);
             this.btnEditLeague.Name = "btnEditLeague";
             this.btnEditLeague.Size = new System.Drawing.Size(75, 23);
             this.btnEditLeague.TabIndex = 12;
             this.btnEditLeague.Text = "Edit";
             this.btnEditLeague.UseVisualStyleBackColor = true;
+            this.btnEditLeague.Click += new System.EventHandler(this.btnEditLeague_Click);
             // 
             // btnEditTeam
             // 
-            this.btnEditTeam.Location = new System.Drawing.Point(312, 384);
+            this.btnEditTeam.Enabled = false;
+            this.btnEditTeam.Location = new System.Drawing.Point(581, 356);
             this.btnEditTeam.Name = "btnEditTeam";
             this.btnEditTeam.Size = new System.Drawing.Size(75, 23);
             this.btnEditTeam.TabIndex = 13;
             this.btnEditTeam.Text = "Edit";
             this.btnEditTeam.UseVisualStyleBackColor = true;
+            this.btnEditTeam.Click += new System.EventHandler(this.btnEditTeam_Click);
             // 
             // btnSaveChanges
             // 
@@ -179,15 +194,54 @@
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(75, 82);
             this.btnSaveChanges.TabIndex = 14;
-            this.btnSaveChanges.Text = "Save Changes";
+            this.btnSaveChanges.Text = "Write File";
             this.btnSaveChanges.UseVisualStyleBackColor = true;
             this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
+            // 
+            // txtAddLeague
+            // 
+            this.txtAddLeague.Location = new System.Drawing.Point(34, 328);
+            this.txtAddLeague.Name = "txtAddLeague";
+            this.txtAddLeague.Size = new System.Drawing.Size(129, 20);
+            this.txtAddLeague.TabIndex = 15;
+            this.txtAddLeague.TextChanged += new System.EventHandler(this.txtAddLeague_TextChanged);
+            // 
+            // txtAddTeam
+            // 
+            this.txtAddTeam.Enabled = false;
+            this.txtAddTeam.Location = new System.Drawing.Point(312, 328);
+            this.txtAddTeam.Name = "txtAddTeam";
+            this.txtAddTeam.Size = new System.Drawing.Size(263, 20);
+            this.txtAddTeam.TabIndex = 16;
+            this.txtAddTeam.TextChanged += new System.EventHandler(this.txtAddTeam_TextChanged);
+            // 
+            // txtEditLeague
+            // 
+            this.txtEditLeague.Enabled = false;
+            this.txtEditLeague.Location = new System.Drawing.Point(34, 358);
+            this.txtEditLeague.Name = "txtEditLeague";
+            this.txtEditLeague.Size = new System.Drawing.Size(129, 20);
+            this.txtEditLeague.TabIndex = 17;
+            this.txtEditLeague.TextChanged += new System.EventHandler(this.txtEditLeague_TextChanged);
+            // 
+            // txtEditTeam
+            // 
+            this.txtEditTeam.Enabled = false;
+            this.txtEditTeam.Location = new System.Drawing.Point(312, 357);
+            this.txtEditTeam.Name = "txtEditTeam";
+            this.txtEditTeam.Size = new System.Drawing.Size(263, 20);
+            this.txtEditTeam.TabIndex = 18;
+            this.txtEditTeam.TextChanged += new System.EventHandler(this.txtEditTeam_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtEditTeam);
+            this.Controls.Add(this.txtEditLeague);
+            this.Controls.Add(this.txtAddTeam);
+            this.Controls.Add(this.txtAddLeague);
             this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.btnEditTeam);
             this.Controls.Add(this.btnEditLeague);
@@ -200,8 +254,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewLeagues);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Edit Teams File";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -225,6 +283,10 @@
         private System.Windows.Forms.Button btnEditLeague;
         private System.Windows.Forms.Button btnEditTeam;
         private System.Windows.Forms.Button btnSaveChanges;
+        private System.Windows.Forms.TextBox txtAddLeague;
+        private System.Windows.Forms.TextBox txtAddTeam;
+        private System.Windows.Forms.TextBox txtEditLeague;
+        private System.Windows.Forms.TextBox txtEditTeam;
     }
 }
 
